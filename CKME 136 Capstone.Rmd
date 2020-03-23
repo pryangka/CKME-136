@@ -1,0 +1,123 @@
+---
+title: "CKME 136 Wisconcin Breast Cancer Original"
+author: "Pryangka Rao Batumalay"
+date: "23/03/2020"
+output: html_document
+---
+
+install.packages("corrplot")
+install.packages("reshape2")
+library(reshape2)
+library(ggplot2)
+library(corrplot)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+The data preprocessing is carried out in R.
+
+```{r file import of the Original dataset}
+WBC<- read.csv(file = "~/Desktop/breast-cancer-wisconsin (1).data", sep = ",", na.strings = '?', stringsAsFactors = F, header = F)
+```
+
+## Including Plots
+
+Renaming columns with the attributes.
+ID: Sample code number  
+CT: Clump Thickness 
+UCSize: Uniformity of Cell Size 
+UCShape: Uniformity of Cell Shape
+MA: Marginal Adhesion 
+SECS: Single Epithelial Cell Size 
+BN: Bare Nuclei  
+BC: Bland Chromatin
+NN: Normal Nucleoli 
+M: Mitoses 
+Class : 2 (Benign) , 4 (Malignant)
+
+```{r renaming columns with attributes}
+names(WBC)<-c("ID","CT","UCSize","UCShape","MA","SECS","BN","BC","NN","M","Class")
+```
+
+```{r Reassigning integer class as factors}
+WBC$Class<-as.factor(ifelse(WBC$Class> 3, 'Malignant', 'Benign'))
+```
+
+```{r structureof WBC}
+str(WBC)
+```
+
+
+```{R summary of original dataset }
+summary(WBC)
+```
+
+```{R confirming the classes in the dataset}
+levels(WBC$Class)
+```
+
+```{R count nain original dataset}
+colSums(is.na(WBC))
+```
+
+```{R removing the ID variable}
+WBC = subset(WBC, select = -c(ID))
+```
+
+I decided to omit the NAs. There is a method called MICE which I am looking into to test.
+```{R removing the NA}
+WBCC<-na.omit(WBC)
+```
+
+```{R confirming the NAs are omitted}
+colSums(is.na(WBCC))
+```
+
+
+```{R checking the dimensions, summary and the structure of the dataset}
+dim(WBCC)
+summary(WBCC)
+str(WBCC)
+```
+
+```{R benign and malignant counts}
+table(WBCC$Class)
+```
+
+
+```{R plot of all the attributes based on benign and malignant class}
+WBCC_plot = melt(WBCC, id.var="Class")
+ggplot(data=WBCC_plot, aes(x=Class, y=value)) + geom_boxplot() +facet_wrap(~variable,ncol = 3)
+```
+
+
+```{R histogram}
+hist(WBCC$CT)
+hist(WBCC$UCSize)
+hist(WBCC$UCShape)
+hist(WBCC$MA)
+hist(WBCC$SECS)
+hist(WBCC$BN)
+hist(WBCC$BC)
+hist(WBCC$NN)
+hist(WBCC$M)
+```
+
+Using the Corrplot, we can see there are strong correalations between two variables in the dataset.
+```{R correlation between attributes}
+WBCC_Corr = cor(WBCC[ ,1:9]) #create an object of the features
+corrplot(WBCC_Corr,method = "color", addCoef.col = "gray" )
+```
+
+```{R SAVE FILE}
+write.csv(WBCC, "~/Desktop/CKME136_WBCC.csv")
+```
+
+
