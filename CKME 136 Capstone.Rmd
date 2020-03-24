@@ -1,5 +1,5 @@
 ---
-title: "CKME 136 Wisconcin Breast Cancer Original"
+title: "CKME 136 Wisconsin Breast Cancer Original"
 author: "Pryangka Rao Batumalay"
 date: "23/03/2020"
 output: html_document
