@@ -1,15 +1,11 @@
 ---
-title: "CKME 136 Wisconsin Breast Cancer Original"
+title: "CKME 136 Wisconcin Breast Cancer Original"
 author: "Pryangka Rao Batumalay"
 date: "23/03/2020"
 output: html_document
 ---
 
-install.packages("corrplot")
-install.packages("reshape2")
-library(reshape2)
-library(ggplot2)
-library(corrplot)
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -19,17 +15,24 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 The data preprocessing is carried out in R.
+
+```{r install packages}
+#install.packages("corrplot")
+#install.packages("reshape2")
+library(reshape2)
+library(ggplot2)
+library(corrplot)
+```
 
 ```{r file import of the Original dataset}
 WBC<- read.csv(file = "~/Desktop/breast-cancer-wisconsin (1).data", sep = ",", na.strings = '?', stringsAsFactors = F, header = F)
 ```
 
-## Including Plots
 
 Renaming columns with the attributes.
+
 ID: Sample code number  
 CT: Clump Thickness 
 UCSize: Uniformity of Cell Size 
