@@ -1,9 +1,9 @@
-# CKME-136
-Capstone Project - Wisconsin Original Breast Cancer
+CKME-136 Capstone Project 
+
+Applications of Machine Learning Models on the Original Wisconsin Breast Cancer Dataset.
 
 Data is obtained from https://archive.ics.uci.edu/ml/datasets/breast+cancer+wisconsin+(original)
 
-R and WEKA was used 
+Breast cancer is the second leading cause of cancer related death worldwide. The American Cancer Society has estimated 276,480 new breast cancer cases for the year of 2020 (The American Cancer Society, 2020) while The Canadian Cancer Society predicts 27, 400 impending breast cancer cases will heavily impact both the American and Canadian hospitals, especially with the current status of coronavirus (The Canadian Cancer Society, 2020). Hospitals and clinics are experiencing an influx of COVID patients which trumps over all cancer care patients (Grant, 2020). Cancer patients are also more susceptible to COVID due to their compromised immune systems (The Canadian Cancer Society, 2020). Therefore, it is vital to attain quick and accurate diagnosis immediately to alleviate the burdens healthcare staff and breast cancer patients. 
 
-Compared Naive Bayes, SMO (SVM), J48, Random Tree and IBk (KNN)to determine the best model in determining the breast cancer state  as Benign or Malignant.
-
+The goal of this project is to use Python and apply machine learning models on the Wisconsin Breast Cancer Original (WBCO) dataset which obtained the breast cell samples through Fine Needle Aspiration (FNA) to determine which is the best model to aid in the detection of benign and malignant breast cancer cells. As time is of the essence, proper features selections which will affect the diagnosis needs to be determined to reduce unnecessary data which will impact the model performances. The models will be tested with these features and the accuracy in diagnosing the breast cancer types will be used to select the best performing model. By training the model to detect breast cancer types with small samples, FNA can be used as the main form of biopsy for detecting breast cancer type.
